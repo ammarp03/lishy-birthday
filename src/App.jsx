@@ -7,6 +7,7 @@ function getTimeLeft() {
   const now = new Date();
   const diff = TARGET_DATE.getTime() - now.getTime();
 
+  
   if (diff <= 0) {
     return {
       completed: true,
