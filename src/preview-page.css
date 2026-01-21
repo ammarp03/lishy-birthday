@@ -1,0 +1,527 @@
+/* Preview page – full-screen, scoped under .preview-page, pink theme aligned with app */
+.preview-page {
+  --color-pink: #feecea;
+  --color-white: #fff;
+  --color-black: #333;
+  --color-text-pink: #FF7882;
+  --color-heart: #FF7882;
+  --color-bg-letter: #fff8e4;
+  --color-border: #DACCBF;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100%;
+  background-color: #feecea;
+  background-image: linear-gradient(0deg, transparent 24%, rgba(255, 245, 250, 0.9) 25%, rgba(255, 245, 250, 0.9) 26%, transparent 27%, transparent 74%, rgba(255, 245, 250, 0.9) 75%, rgba(255, 245, 250, 0.9) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255, 245, 250, 0.9) 25%, rgba(255, 245, 250, 0.9) 26%, transparent 27%, transparent 74%, rgba(255, 245, 250, 0.9) 75%, rgba(255, 245, 250, 0.9) 76%, transparent 77%, transparent);
+  background-size: 80px 80px;
+  overflow: auto;
+  overflow-x: hidden;
+  z-index: 50;
+  padding: 1rem 0.5rem 2rem;
+}
+
+.preview-page .flag__birthday {
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-200px);
+  animation: ppTranslateYFlag 1.5s 2s forwards;
+}
+@keyframes ppTranslateYFlag {
+  to { transform: translateY(-10px); }
+}
+.preview-page .flag__birthday .flag__left {
+  transform: rotate(-10deg) translate(-20px, 30px);
+}
+.preview-page .flag__birthday .flag__right {
+  transform: rotate(10deg) translate(20px, 30px) scaleX(-1);
+}
+
+.preview-page .content {
+  width: 100%;
+  position: relative;
+  display: flex;
+  padding-top: 3rem;
+}
+.preview-page .content .left,
+.preview-page .content .right {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.preview-page .content .left { width: 40%; }
+.preview-page .content .right { width: 60%; }
+
+.preview-page .left .btn {
+  transform: scale(0);
+  animation: ppScaleCricle 2s 16s forwards ease-in-out;
+}
+
+.preview-page #btn__letter {
+  position: relative;
+  margin-top: 30px;
+  background-color: var(--color-text-pink);
+  outline: none;
+  padding: 5px 15px;
+  font-size: 1rem;
+  border-radius: 50px;
+  border: 3px solid var(--color-black);
+  font-family: "Sriracha", cursive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transform: scale(1);
+  transition: all 0.5s ease-in-out;
+}
+.preview-page #btn__letter:active { transform: scale(0.7); }
+.preview-page #btn__letter i { margin-left: 5px; }
+.preview-page #btn__letter:hover {
+  border-color: var(--color-heart);
+  background-color: var(--color-heart);
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+}
+.preview-page #btn__letter:hover i {
+  animation: ppRotateHeart 1s infinite linear;
+}
+@keyframes ppRotateHeart {
+  0%, 50%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(12deg); }
+  75% { transform: rotate(-12deg); }
+}
+
+.preview-page .title {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: "Titan One", sans-serif;
+  font-size: 3rem;
+  flex-direction: column;
+  perspective: 1000px;
+}
+.preview-page .title .happy,
+.preview-page .title .birthday {
+  position: relative;
+  text-shadow: 4px 4px var(--color-black), -4px 4px var(--color-black), 4px -4px var(--color-black), -4px -4px var(--color-black), 4px 8px 0 var(--color-black);
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+.preview-page .title .happy { color: var(--color-white); }
+.preview-page .title .happy span,
+.preview-page .title .birthday span {
+  transform: translateY(50px);
+  opacity: 0;
+  visibility: hidden;
+  animation: ppTxtTranslateY 0.5s var(--t) forwards;
+}
+@keyframes ppTxtTranslateY {
+  100% { transform: translateY(0); opacity: 1; visibility: visible; }
+}
+.preview-page .title .birthday { color: var(--color-text-pink); }
+
+.preview-page .title .hat {
+  position: absolute;
+  right: 45px;
+  top: -350px;
+  transform: rotate(-40deg);
+  z-index: -1;
+  animation: ppTopHat 4s 7s forwards ease;
+}
+@keyframes ppTopHat {
+  20%, 30% { top: -30px; transform-origin: left; transform: rotate(-40deg); }
+  35%, 100% { top: -30px; transform: rotate(0deg); }
+}
+
+.preview-page .date__of__birth,
+.preview-page .name {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--color-text-pink);
+  border-radius: 50px;
+  margin-top: 20px;
+  font-family: "Sriracha", cursive;
+}
+.preview-page .date__of__birth {
+  border: 3px solid var(--color-black);
+  position: relative;
+  transform: translateY(-100px);
+  z-index: -1;
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  animation: ppDateOfBirth 5s 9s forwards;
+}
+@keyframes ppDateOfBirth {
+  20%, 40% { width: 0; height: 0; transform: translateY(0); opacity: 1; visibility: visible; }
+  45% { transform: translateY(0); opacity: 1; visibility: visible; width: 300px; height: 0; }
+  50%, 100% { transform: translateY(0); opacity: 1; visibility: visible; width: 300px; height: 50px; }
+}
+.preview-page .name {
+  position: absolute;
+  padding: 0 20px;
+  bottom: -20px;
+  border: 3px solid var(--color-black);
+  font-family: "Dancing Script", cursive;
+}
+.preview-page .date__of__birth span,
+.preview-page .name span { font-weight: bold; margin: 0 40px; }
+.preview-page .date__of__birth span { font-size: 1.2rem; }
+.preview-page .name span { font-size: 1.7rem; }
+
+.preview-page .right .box__account {
+  position: relative;
+  transform: translateY(700px);
+  animation: ppTopBoxImage 8s 7s forwards ease-in;
+}
+@keyframes ppTopBoxImage {
+  to { transform: translateY(0); }
+}
+.preview-page .content .right .image {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border: 6px solid var(--color-black);
+}
+.preview-page .content .right .image img { width: 100%; object-fit: cover; }
+
+.preview-page .cricle {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0);
+  animation: ppScaleCricle 3s 15s forwards ease-in-out;
+}
+@keyframes ppScaleCricle {
+  0% { transform: scale(0); }
+  10% { transform: scale(1.3); }
+  20% { transform: scale(0.7); }
+  30%, 100% { transform: scale(1); }
+}
+.preview-page .text__cricle {
+  width: 100px;
+  height: 100px;
+  background-color: var(--color-text-pink);
+  border-radius: 50%;
+  border: 5px solid var(--color-black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ppRotateCricle 5s linear infinite;
+}
+@keyframes ppRotateCricle {
+  to { transform: rotate(360deg); }
+}
+.preview-page .text__cricle span {
+  top: 0;
+  left: 50%;
+  position: absolute;
+  color: var(--color-black);
+  transform: rotate(calc(var(--i) * 24deg));
+  transform-origin: 0 45px;
+  font-family: "Sriracha", cursive;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+.preview-page .fa-heart {
+  color: var(--color-heart);
+  filter: drop-shadow(0 0 3px var(--color-heart));
+  animation: ppScaleHeart 1s infinite linear;
+}
+.preview-page .cricle .fa-heart { position: absolute; transform: scale(0.85); }
+@keyframes ppScaleHeart {
+  50% { transform: scale(1.2); }
+}
+
+.preview-page .right .balloon_one {
+  position: absolute;
+  top: -70px;
+  left: -70px;
+  animation: ppBalloon1 2s infinite linear;
+}
+@keyframes ppBalloon1 {
+  0%, 50%, 100% { transform-origin: bottom right; transform: rotate(0deg); }
+  25% { transform-origin: bottom right; transform: rotate(3deg); }
+  75% { transform-origin: bottom right; transform: rotate(-3deg); }
+}
+.preview-page .right .balloon_two {
+  position: absolute;
+  top: 170px;
+  right: -65px;
+  z-index: -1;
+  transform: rotate(10deg);
+  animation: ppBalloon2 2s infinite linear;
+}
+@keyframes ppBalloon2 {
+  0%, 50%, 100% { transform-origin: bottom left; transform: rotate(10deg); }
+  25% { transform-origin: bottom left; transform: rotate(7deg); }
+  75% { transform-origin: bottom left; transform: rotate(13deg); }
+}
+
+.preview-page .decorate_star {
+  position: absolute;
+  transform: scale(0);
+  background-color: var(--color-black);
+  clip-path: polygon(0 50%, 35% 35%, 50% 0, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%);
+  animation: ppScaleCricle 3s var(--t) forwards, ppScaleStar 2s 16s infinite ease-in-out;
+}
+.preview-page .decorate_star.star1 { width: 20px; height: 20px; top: 75px; left: 300px; }
+.preview-page .decorate_star.star2 { width: 15px; height: 20px; top: 35px; right: 360px; }
+.preview-page .decorate_star.star3 { width: 14px; height: 14px; top: 290px; left: 630px; }
+.preview-page .decorate_star.star4 { width: 18px; height: 18px; bottom: 60px; left: 35px; }
+.preview-page .decorate_star.star5 { width: 16px; height: 18px; bottom: 140px; left: 500px; }
+@keyframes ppScaleStar {
+  25% { transform: scale(0.8); }
+  50% { transform: scale(1.1); }
+}
+.preview-page .decorate_bottom { position: absolute; right: 0; bottom: -10px; }
+.preview-page .decorate_flower--one { position: absolute; top: 250px; left: 50px; transform: scale(0); animation: ppScaleCricle 3s var(--t) forwards ease-in-out; }
+.preview-page .decorate_flower--two { position: absolute; top: 225px; left: 540px; transform: scale(0); animation: ppScaleCricle 3s var(--t) forwards ease-in-out; }
+.preview-page .decorate_flower--three { position: absolute; top: 150px; right: 235px; transform: scale(0); animation: ppScaleCricle 3s var(--t) forwards ease-in-out; }
+.preview-page .smiley__icon { position: absolute; bottom: 180px; left: 600px; transform: scale(0); animation: ppScaleCricle 3s 15s forwards ease-in-out; }
+
+/* boxMail modal - pink theme */
+.preview-page .boxMail {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  transform: scale(0.3);
+  visibility: hidden;
+  transition: all 0.5s;
+  z-index: 100000;
+  overflow-y: auto;
+  padding: 2rem 0;
+  box-sizing: border-box;
+}
+.preview-page .boxMail.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+.preview-page .boxMail .boxMail-container {
+  position: relative;
+  width: 750px;
+  max-width: 95vw;
+  min-height: 500px;
+  height: auto;
+  display: flex;
+  margin: auto;
+  flex-shrink: 0;
+  transform: scale(0.9);
+  perspective: 2000px;
+  transition: all 0.5s;
+}
+.preview-page .boxMail .boxMail-container:hover {
+  transform: rotate(-5deg);
+  filter: drop-shadow(0 0 10px #FF7882);
+}
+/* Card flip on hover – use -100deg so text doesn’t appear reversed (ulta) */
+.preview-page .boxMail .boxMail-container:hover .card1,
+.preview-page .boxMail.letter-reveal .boxMail-container .card1 {
+  transform: translate(-187px, -250px) rotateY(-100deg);
+}
+.preview-page .boxMail .boxMail-container .card1,
+.preview-page .boxMail .boxMail-container .card2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #333;
+}
+.preview-page .boxMail .boxMail-container .card1 {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, #FF7882, #FF7882 63%);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+  transform-style: preserve-3d;
+  transform-origin: left;
+  transition: all 1s ease-in-out;
+  backface-visibility: hidden;
+}
+.preview-page .boxMail .boxMail-container .card1 .userImg {
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid white;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.preview-page .boxMail .boxMail-container .card1 .userImg img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.preview-page .boxMail .boxMail-container .card1 h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 40px;
+  text-transform: uppercase;
+  width: 80%;
+  text-align: center;
+  line-height: 1.5;
+  letter-spacing: 5px;
+  transform: rotate(-5deg);
+  text-shadow: 0 0 5px white, 0 0 10px white;
+}
+.preview-page .boxMail .boxMail-container .card2 {
+  position: relative;
+  width: 80%;
+  min-height: 500px;
+  height: auto;
+  background: linear-gradient(to right, #e0e0e0, #ffffff 30%);
+  transform-style: preserve-3d;
+  transform-origin: left;
+  transition: all 1s;
+}
+.preview-page .boxMail .boxMail-container .card2 .card2-content {
+  width: 100%;
+  position: relative;
+  background-color: #FF7882;
+  transition: all 1s;
+  overflow: visible;
+  font-family: "Inter", system-ui, sans-serif;
+  color: #fff;
+  padding-bottom: 24px;
+  box-sizing: border-box;
+}
+/* Right panel (card2) shifts when container hovered or letter-reveal */
+.preview-page .boxMail .boxMail-container:hover .card2-content,
+.preview-page .boxMail.letter-reveal .boxMail-container .card2-content {
+  transform: translate(20px, 20px);
+  box-shadow: -1px -1px 5px rgba(0, 0, 0, 0.4);
+}
+.preview-page .boxMail .boxMail-container .card2 h3 {
+  font-family: "Dancing Script", cursive;
+  padding: 20px 0 10px 60px;
+  opacity: 0;
+  visibility: hidden;
+  font-size: 25px;
+  text-shadow: 0 0 8px #FF7882;
+}
+/* Content shows on container hover (shorter delays) or when letter-reveal */
+.preview-page .boxMail .boxMail-container:hover .card2 h3,
+.preview-page .boxMail.letter-reveal .boxMail-container .card2 h3 {
+  animation: ppTexth3 3s forwards;
+  animation-delay: 0.5s;
+}
+.preview-page .boxMail.letter-reveal .boxMail-container .card2 h3 {
+  animation-delay: 0.3s;
+}
+@keyframes ppTexth3 {
+  0% { opacity: 1; visibility: visible; padding: 20px 0 10px 60px; }
+  100% { opacity: 1; visibility: visible; padding: 20px 0 10px 152px; }
+}
+.preview-page .boxMail .boxMail-container .card2 h2 {
+  font-family: "Dancing Script", cursive;
+  padding: 0 20px;
+  text-indent: 20px;
+  font-size: 22px;
+  opacity: 0;
+}
+.preview-page .boxMail .boxMail-container:hover .card2 h2,
+.preview-page .boxMail.letter-reveal .boxMail-container .card2 h2 {
+  animation: ppTexth2 2s forwards;
+  animation-delay: 1.2s;
+}
+.preview-page .boxMail.letter-reveal .boxMail-container .card2 h2 {
+  animation-delay: 0.8s;
+}
+@keyframes ppTexth2 {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.preview-page .boxMail .boxMail-container .card2 .card2-content .imageCute2 {
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  opacity: 0;
+  transition: 1s;
+}
+.preview-page .boxMail .boxMail-container:hover .card2 .card2-content .imageCute2,
+.preview-page .boxMail.letter-reveal .boxMail-container .card2 .card2-content .imageCute2 {
+  animation: ppCute3 1s linear infinite, ppCute4 3s 1s forwards;
+  animation-delay: 1s;
+}
+.preview-page .boxMail.letter-reveal .boxMail-container .card2 .card2-content .imageCute2 {
+  animation-delay: 0.5s;
+}
+@keyframes ppCute3 {
+  0% { opacity: 1; transform: rotate(0deg); }
+  25% { opacity: 1; transform: rotate(5deg); }
+  50% { opacity: 1; transform: rotate(0deg); }
+  75% { opacity: 1; transform: rotate(-5deg); }
+  100% { opacity: 1; transform: rotate(0deg); }
+}
+@keyframes ppCute4 {
+  0% { left: 20px; }
+  100% { left: 100px; }
+}
+.preview-page .boxMail .boxMail-container .card2 .card2-content .imageCute2 img { width: 40px; }
+.preview-page .boxMail .fa-xmark {
+  position: fixed;
+  top: 0;
+  right: 0;
+  font-size: 30px;
+  padding: 10px 25px;
+  cursor: pointer;
+  color: white;
+  z-index: 100001;
+}
+
+@media screen and (max-width: 658px) {
+  .preview-page .flag__birthday .flag__left { transform: rotate(-10deg) translate(-119px, 3px); }
+  .preview-page .flag__birthday .flag__right { transform: rotate(10deg) translate(-106px, 39px) scaleX(-1); }
+  .preview-page .content {
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+    align-items: center;
+    padding-top: 2rem;
+  }
+  .preview-page .title {
+    font-size: 1.5rem;
+    letter-spacing: 8px;
+  }
+  .preview-page #btn__letter {
+    margin-top: 17px;
+    width: 209px;
+    padding: 6px 4px;
+  }
+  .preview-page .cricle { top: 10px; right: -54px; }
+  .preview-page .title .hat { right: -98px; top: -51px !important; }
+  .preview-page .content .right .image { width: 200px; height: 200px; }
+  .preview-page .name { padding: 0 3px; bottom: -6px; }
+  .preview-page .name span { font-size: 1rem; }
+  .preview-page .right .balloon_one { top: 10px; left: -77px; }
+  .preview-page .right .balloon_one img { width: 76px !important; }
+  .preview-page .boxMail .boxMail-container { width: 95vw; min-height: 420px; height: auto; max-width: 400px; }
+}
